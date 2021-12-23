@@ -1,0 +1,43 @@
+{
+	"name": "shuffler",
+	"version": "1.0.0",
+	"description": "Fun way to order how people will start talking in meetings, with daily quotes to boost your day",
+	"author": {
+		"name": "dippas",
+		"email": "dippas.dev@gmail.com",
+		"url": "https://github.com/dippas"
+	},
+	"keywords": [
+		"randomizer",
+		"shuffle",
+		"shuffler",
+		"daily",
+		"quotes",
+		"meeting",
+		"people"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dippas/shuffler"
+	},
+	"bugs": "https://github.com/dippas/shuffler/issues",
+	"funding": "https://www.buymeacoffee.com/dippas",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"db": "json-server -p 7000 db.json"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^2.0.1",
+		"@vue/compiler-sfc": "^3.2.26",
+		"pug": "^3.0.2",
+		"sass": "^1.45.1",
+		"vite": "^2.7.6"
+	},
+	"dependencies": {
+		"canvas-confetti": "^1.4.0",
+		"vue": "^3.1.1"
+	}
+}

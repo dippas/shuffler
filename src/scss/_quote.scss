@@ -1,0 +1,15 @@
+.quote {
+	@include fluidProperty('font-size', .75);
+	font-weight: var(--bold);
+
+	&__author {
+		@include fluidProperty('font-size', .7);
+		margin-bottom: 1rem;
+	}
+
+	&__thumbnail {
+		@include border-radius(50%);
+		@include size(5rem);
+		object-fit: cover;
+	}
+}
