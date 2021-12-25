@@ -71,7 +71,7 @@ npm run preview
 * Daily Random Background from [Picsum API](https://picsum.photos/)
 * Daily Quotes and it's author with picture from [Quoteable API](https://api.quotable.io/)
 * Sound of deck cards shuffling
-* Confetti effect when shuffle had finished sorting (with an extra audio - 20th Century Fox Intro Flute)
+* Confetti effect when shuffle finished sorting (with an extra audio - 20th Century Fox Intro Flute)
 
 ## ChangeLog
 
