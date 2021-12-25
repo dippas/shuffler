@@ -2,7 +2,7 @@
 
 ![shuffler](https://i.imgur.com/Hq8iFSu.png)
 
-Fun way to order how people will start talking in meetings, with daily quotes to boost your day
+Fun way to sort how people will start talking in meetings, with daily quotes to boost your day
 
 ## Show your support
 
@@ -70,6 +70,8 @@ npm run preview
 * Randomly select daily who will shuffle
 * Daily Random Background from [Picsum API](https://picsum.photos/)
 * Daily Quotes and it's author with picture from [Quoteable API](https://api.quotable.io/)
+* Sound of deck cards shuffling
+* Confetti effect when shuffle had finished sorting (with an extra audio - 20th Century Fox Intro Flute)
 
 ## ChangeLog
 
