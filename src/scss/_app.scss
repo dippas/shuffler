@@ -1,0 +1,59 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	outline: 0;
+	font-size: 100%;
+
+	&::before,
+	&::after {
+		box-sizing: border-box;
+	}
+}
+
+html {
+	font-size: var(--font-base);
+}
+
+body {
+	font-family: var(--system);
+}
+
+[v-cloak] {
+	display: none;
+}
+
+.app {
+	@include relative(top 0);
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+	color: rgb(var(--white));
+
+	&::after {
+		content: '';
+		@include absolute(top 0 left 0);
+		@include size(100%);
+		background-color: rgba(var(--black), .5)
+	}
+
+	&__container {
+		@include z-index('sidewalk');
+		@include size(100%);
+		@extend %block-center;
+		position: relative;
+	}
+
+	&__box {
+		@include fluidProperty('padding', 3);
+		@include size(100%);
+		@include relative(top 0);
+		display: grid;
+		text-align: center;
+		background-color: rgba(var(--gray), .8);
+	}
+}
+
+
+@include spinner(1, rgb(var(--pink)))
