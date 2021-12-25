@@ -65,11 +65,11 @@ npm run preview
 
 ## Features
 
-* Shuffle Randomly Users (with random rounds bwtween 5 and 10)
+* Shuffle Randomly Users (with random rounds between 5 and 10)
 * CRUD application with JSON Server (with ability to upload image/avatar stored in base64, fallback to [UI avatars API](https://eu.ui-avatars.com) if no image provided)
 * Randomly select daily who will shuffle
-* Daily Random Background from [Picsum API](https://picsum.photos/)
-* Daily Quotes and it's author with picture from [Quoteable API](https://api.quotable.io/)
+* Daily Random Backgrounds from [Picsum API](https://picsum.photos/)
+* Daily Random Quotes and it's author with picture from [Quoteable API](https://api.quotable.io/)
 * Sound of deck cards shuffling
 * Confetti effect when shuffle finished sorting (with an extra audio - 20th Century Fox Intro Flute)
 
