@@ -75,7 +75,7 @@ npm run preview
 
 ## ChangeLog
 
-You can check the changelog [here](https://github.com/dippas/shuffer/releases)
+You can check the changelog [here](https://github.com/dippas/shuffler/releases)
 
 ## Contributing
 
