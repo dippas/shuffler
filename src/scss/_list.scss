@@ -1,82 +1,81 @@
 .list {
-	@extend %block-center;
-	width: 90%;
+  @extend %block-center;
+  width: 90%;
 
-	@include bp('large') {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
+  @include bp("large") {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-	&-move {
-		transition: .75s cubic-bezier(.68, -.55, .265, 1.55);
-	}
+  &-move {
+    transition: 0.75s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
 
-	&__item {
-		@extend %block-center;
-		width: calc(100% / 3);
-		transition: .4s ease-out;
+  &__item {
+    @extend %block-center;
+    width: calc(100% / 3);
+    transition: 0.4s ease-out;
 
-		@include bp('large') {
-			width: fit-content;
-			margin-right: 1rem;
-			margin-left: 0;
-		}
+    @include bp("large") {
+      width: fit-content;
+      margin-right: 1rem;
+      margin-left: 0;
+    }
 
-		&:hover {
-			@include translate(0, 1rem);
-		}
-	}
+    &:hover {
+      @include translate(0, 1rem);
+    }
+  }
 
-	&__box {
-		@include border-radius(1rem);
-		@extend %shadow;
-		overflow: hidden;
-		margin-bottom: 3rem;
-	}
+  &__box {
+    @include border-radius(1rem);
+    @extend %shadow;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
 
-	&__image {
-		@include size(100%);
-		object-fit: cover;
-		display: block;
-		aspect-ratio: 1 / 1;
+  &__image {
+    @include size(100%);
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1 / 1;
 
-		@include bp('large') {
-			@include fluidProperty('width', 5)
-		}
-	}
+    @include bp("large") {
+      @include fluidProperty("width", 5);
+    }
+  }
 
-	&__text {
-		@include fluidProperty('padding', .8);
-		@include fluidProperty('font-size', .8);
-		display: block;
-		font-weight: var(--bold);
-		background-color: rgb(var(--linen));
-		color: rgb(var(--turquoise));
-	}
+  &__text {
+    @include fluidProperty("padding", 0.8);
+    @include fluidProperty("font-size", 0.8);
+    display: block;
+    font-weight: var(--bold);
+    background-color: rgb(var(--linen));
+    color: rgb(var(--turquoise));
+  }
 
-	&__info {
-		@include fluidProperty('padding', .6);
-		@include fluidProperty('font-size', .6);
-		width: 100%;
-		border: 0;
-		background: rgb(var(--coral));
-		color: rgb(var(--white));
+  &__info {
+    @include fluidProperty("padding", 0.6);
+    @include fluidProperty("font-size", 0.6);
+    width: 100%;
+    border: 0;
+    background: rgb(var(--coral));
+    color: rgb(var(--white));
 
-		&:not([disabled]) {
+    &:not([disabled]) {
+      &:hover {
+        background-color: transparent;
+        cursor: pointer;
 
-			&:hover {
-				background-color: transparent;
-				cursor: pointer;
+        &::before {
+          content: "Vacations";
+        }
 
-				&::before {
-					content: 'Vacations';
-				}
-
-				span {
-					display: none;
-				}
-			}
-		}
-	}
+        span {
+          display: none;
+        }
+      }
+    }
+  }
 }

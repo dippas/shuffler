@@ -5,14 +5,23 @@ footer(class='footer') {{ copy }}
 
 <script>
 export default {
-	props: {
-		copy: String,
-		author: String,
-		authorLink: String
-	}
-}
+  props: {
+    copy: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    },
+    authorLink: {
+      type: String,
+      required: true
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-	@import '../scss/footer'
+@import '../scss/footer';
 </style>

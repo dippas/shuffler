@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
 .app__container
 	.app__box
 		Audio(shuffling='assets/audio/shuffling.mp3' flute='assets/audio/flute.mp3')
@@ -9,14 +9,14 @@
 </template>
 
 <script setup>
-	import Audio from './components/Audio.vue'
-	import AddUsers from './components/AddUsers.vue'
-	import Container from './components/Container.vue'
-	import Title from './components/Title.vue'
-	import Quote from './components/Quote.vue'
-	import Footer from './components/Footer.vue'
+import Audio from "./components/Audio.vue";
+import AddUsers from "./components/AddUsers.vue";
+import Container from "./components/Container.vue";
+import Title from "./components/Title.vue";
+import Quote from "./components/Quote.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
-<style lang='scss'>
-	@import './scss/app'
+<style lang="scss">
+@import "./scss/app";
 </style>

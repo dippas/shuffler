@@ -1,79 +1,79 @@
 .users {
-	&__upload {
-		@extend %hide-element;
-	}
+  &__upload {
+    @extend %hide-element;
+  }
 
-	&__fieldset {
-		margin-bottom: 2rem;
-		border: none;
+  &__fieldset {
+    margin-bottom: 2rem;
+    border: none;
 
-		@include bp('large') {
-			display: flex;
-		}
-	}
+    @include bp("large") {
+      display: flex;
+    }
+  }
 
-	&__title {
-		@include absolute;
-		@include size(.1rem);
-		overflow: hidden;
-		clip-path: inset(50%);
-		border: 0;
-		white-space: nowrap;
-	}
+  &__title {
+    @include absolute;
+    @include size(0.1rem);
+    overflow: hidden;
+    clip-path: inset(50%);
+    border: 0;
+    white-space: nowrap;
+  }
 
-	&__preview {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+  &__preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-		&-image {
-			@include border-radius(50%);
-			@extend %shadow;
-			max-width: 5vw;
-			width: 100%;
-		}
-	}
+    &-image {
+      @include border-radius(50%);
+      @extend %shadow;
+      max-width: 5vw;
+      width: 100%;
+    }
+  }
 
-	&__legend {
-		@include fluidProperty('font-size', 1);
-		@include fluidProperty('padding', .5);
-		color: rgb(var(--white));
-		margin-bottom: 2rem;
-		font-weight: var(--fw-bold);
-		display: inline-flex;
+  &__legend {
+    @include fluidProperty("font-size", 1);
+    @include fluidProperty("padding", 0.5);
+    color: rgb(var(--white));
+    margin-bottom: 2rem;
+    font-weight: var(--fw-bold);
+    display: inline-flex;
 
-		&:not(:empty) {
-			border-bottom: .2rem dotted rgb(var(--turquoise));
-		}
-	}
+    &:not(:empty) {
+      border-bottom: 0.2rem dotted rgb(var(--turquoise));
+    }
+  }
 
-	&__name {
-		@include fluidProperty('padding', .8);
-		@include fluidProperty('font-size', .75);
-		@include border-radius(1rem);
-		flex-basis:  70%;
-		line-height: line-height(20, 16);
-		color: rgb(var(--black));
-		background-color: rgb(var(--white));
-		border: .2rem solid rgb(var(--turquoise));
-		margin-right: 2rem;
-		margin-bottom: 2rem;
-		width: 100%;
+  &__name {
+    @include fluidProperty("padding", 0.8);
+    @include fluidProperty("font-size", 0.75);
+    @include border-radius(1rem);
+    flex-basis: 70%;
+    line-height: line-height(20, 16);
+    color: rgb(var(--black));
+    background-color: rgb(var(--white));
+    border: 0.2rem solid rgb(var(--turquoise));
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
 
-		@include bp('large') {
-			margin-bottom: 0;
-		}
+    @include bp("large") {
+      margin-bottom: 0;
+    }
 
-		&:focus {
-			@extend %shadow;
-		}
-	}
+    &:focus {
+      @extend %shadow;
+    }
+  }
 
-	&__avatar {
-		margin-bottom: 0;
-	}
+  &__avatar {
+    margin-bottom: 0;
+  }
 
-	&__icon {
-		margin-right: 1rem;
-	}
+  &__icon {
+    margin-right: 1rem;
+  }
 }

@@ -1,46 +1,45 @@
 .button {
-	@include border-radius(1rem);
-	@include fluidProperty('font-size', .5);
-	display: inline-flex;
-	align-items: center;
-	letter-spacing: .2rem;
-	text-transform: uppercase;
-	font-weight: var(--bold);
-	padding: 1.5rem 3rem;
-	border: 0;
-	margin-bottom: 4rem;
-	font-family: var(--system);
+  @include border-radius(1rem);
+  @include fluidProperty("font-size", 0.5);
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  font-weight: var(--bold);
+  padding: 1.5rem 3rem;
+  border: 0;
+  margin-bottom: 4rem;
+  font-family: var(--system);
 
-	&[disabled] {
-		opacity: .6;
-	}
+  &[disabled] {
+    opacity: 0.6;
+  }
 
-	&:not([disabled]) {
+  &:not([disabled]) {
+    &:hover {
+      @extend %shadow;
+      cursor: pointer;
+    }
+  }
 
-		&:hover {
-			@extend %shadow;
-			cursor: pointer;
-		}
-	}
+  &--reset {
+    ~ .button {
+      margin-left: 2rem;
+    }
+  }
 
-	&--reset {
-		~.button {
-			margin-left: 2rem;
-		}
-	}
+  &--pink {
+    color: rgb(var(--white));
+    background-color: rgba(var(--pink));
+  }
 
-	&--pink {
-		color: rgb(var(--white));
-		background-color: rgba(var(--pink));
-	}
+  &--turquoise {
+    color: rgb(var(--white));
+    background-color: rgba(var(--turquoise));
+  }
 
-	&--turquoise {
-		color: rgb(var(--white));
-		background-color: rgba(var(--turquoise));
-	}
-
-	&--coral {
-		color: rgb(var(--white));
-		background-color: rgba(var(--coral));
-	}
+  &--coral {
+    color: rgb(var(--white));
+    background-color: rgba(var(--coral));
+  }
 }
