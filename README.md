@@ -36,7 +36,7 @@ Give a ⭐️ if you enjoyed this project!
 ### Installation
 
 ```sh
-npm i
+yarn
 ```
 
 ### Development
@@ -44,25 +44,25 @@ npm i
 Run json-server and let it running
 
 ```sh
-npm run db
+yarn db
 ```
 
 Run project in another terminal at the same time
 
 ```sh
-npm run dev
+yarn dev
 ```
 
 ### Build for Production
 
 ```sh
-npm run build
+yarn build
 ```
 
 ### Locally preview production build
 
 ```sh
-npm run preview
+yarn preview
 ```
 
 ## Features
