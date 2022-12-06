@@ -1,43 +1,47 @@
 {
-	"name": "shuffler",
-	"version": "1.0.0",
-	"description": "Fun way to sort how people will start talking in meetings, with daily quotes to boost your day",
-	"author": {
-		"name": "dippas",
-		"email": "dippas.dev@gmail.com",
-		"url": "https://github.com/dippas"
-	},
-	"keywords": [
-		"randomizer",
-		"shuffle",
-		"shuffler",
-		"daily",
-		"quotes",
-		"meeting",
-		"people"
-	],
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/dippas/shuffler"
-	},
-	"bugs": "https://github.com/dippas/shuffler/issues",
-	"funding": "https://www.buymeacoffee.com/dippas",
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"db": "json-server -p 7000 db.json"
-	},
-	"devDependencies": {
-		"@vitejs/plugin-vue": "^2.0.1",
-		"@vue/compiler-sfc": "^3.2.26",
-		"pug": "^3.0.2",
-		"sass": "^1.45.1",
-		"vite": "^2.7.6"
-	},
-	"dependencies": {
-		"canvas-confetti": "^1.4.0",
-		"vue": "^3.1.1"
-	}
+  "name": "shuffler",
+  "version": "1.1.0",
+  "description": "Fun way to sort how people will start talking in meetings, with daily quotes to boost your day",
+  "author": {
+    "name": "dippas",
+    "email": "dippas.dev@gmail.com",
+    "url": "https://github.com/dippas"
+  },
+  "keywords": [
+    "randomizer",
+    "shuffle",
+    "shuffler",
+    "daily",
+    "quotes",
+    "meeting",
+    "people"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dippas/shuffler"
+  },
+  "bugs": "https://github.com/dippas/shuffler/issues",
+  "funding": "https://www.buymeacoffee.com/dippas",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "db": "json-server -p 7000 db.json"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.2.0",
+    "@vue/compiler-sfc": "^3.2.45",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-vue": "^9.8.0",
+    "prettier": "^2.8.0",
+    "pug": "^3.0.2",
+    "sass": "^1.56.1",
+    "vite": "^3.2.5"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.6.0",
+    "vue": "^3.2.45"
+  }
 }

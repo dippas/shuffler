@@ -1,146 +1,152 @@
 @mixin fluidProperty($property, $size) {
-	#{$property}: clamp(1.4rem * #{$size}, 2vw * #{$size}, 2rem * #{$size})
+  #{$property}: clamp(1.4rem * #{$size}, 2vw * #{$size}, 2rem * #{$size});
 }
 
 @mixin border-radius($key) {
-	border-radius: $key;
-	background-clip: padding-box;
-	/* stops bg color from leaking outside the border: */
+  border-radius: $key;
+  background-clip: padding-box;
+  /* stops bg color from leaking outside the border: */
 }
 
 @mixin position($position, $args) {
-	@each $o in top right bottom left {
-		$i: index($args, $o);
+  @each $o in top right bottom left {
+    $i: index($args, $o);
 
-		@if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
-			#{$o}: nth($args, $i + 1);
-		}
-	}
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number
+    {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
 
-	position: $position;
+  position: $position;
 }
 
 // Positioning helpers
-@mixin absolute($args: '') {
-	@include position(absolute, $args);
+@mixin absolute($args: "") {
+  @include position(absolute, $args);
 }
 
-@mixin fixed($args: '') {
-	@include position(fixed, $args);
+@mixin fixed($args: "") {
+  @include position(fixed, $args);
 }
 
-@mixin relative($args: '') {
-	@include position(relative, $args);
+@mixin relative($args: "") {
+  @include position(relative, $args);
 }
 
-@mixin static($args: '') {
-	@include position(static, $args);
+@mixin static($args: "") {
+  @include position(static, $args);
 }
 
-@mixin sticky($args: '') {
-	@include position(sticky, $args);
+@mixin sticky($args: "") {
+  @include position(sticky, $args);
 }
 
 @mixin bp($breakpoint, $type: min) {
-	$value: map-get($breakpoints, $breakpoint);
+  $value: map-get($breakpoints, $breakpoint);
 
-	@if $value != null {
-		$current-breakpoint: $breakpoint !global;
+  @if $value != null {
+    $current-breakpoint: $breakpoint !global;
 
-		@if $type == max {
-			$value: $value - .063em
-		}
+    @if $type == max {
+      $value: $value - 0.063em;
+    }
 
-		@media (#{$type}-width: $value) {
-			@content;
-		}
+    @media (#{$type}-width: $value) {
+      @content;
+    }
 
-		$current-breakpoint: $default-breakpoint !global;
-	}
-
-	@else {
-		@warn 'Invalid breakpoint `#{$breakpoint}`.';
-	}
+    $current-breakpoint: $default-breakpoint !global;
+  } @else {
+    @warn 'Invalid breakpoint `#{$breakpoint}`.';
+  }
 }
 
 @mixin size($width, $height: $width) {
-	width: $width;
-	height: $height;
+  width: $width;
+  height: $height;
 }
 
 @mixin z-index($key) {
-	z-index: z-index($key);
+  z-index: z-index($key);
 }
 
 @mixin keyframes($key) {
-	@keyframes #{$key} {
-		@content;
-	}
+  @keyframes #{$key} {
+    @content;
+  }
 }
 
 // transformations :: rotate, scale, translate
 @mixin transform($key...) {
-	transform: translate3d(0, 0, 0) $key;
+  transform: translate3d(0, 0, 0) $key;
 }
 
 // rotate
 @mixin rotate($key) {
-	@include transform(rotate(#{$key}deg));
+  @include transform(rotate(#{$key}deg));
 }
 
 // scale
 @mixin scale($key...) {
-	@include transform(scale($key));
+  @include transform(scale($key));
 }
 
 @mixin scale3d($key...) {
-	@include transform(scale3d($key));
+  @include transform(scale3d($key));
 }
 
 // translate
 @mixin translate($x, $y) {
-	@include transform(translate($x, $y));
+  @include transform(translate($x, $y));
 }
 
 // skew
 @mixin skew($x, $y) {
-	@include transform(skew(#{$x}deg, #{$y}deg));
+  @include transform(skew(#{$x}deg, #{$y}deg));
 }
 
-@mixin spinner($numberColors, $fillColor, $fillColor2: null, $fillColor3: null, $loading: '.loader', $size: 2rem, $borderWidth: .1rem, $speed: .6s, $bgColor: transparent) {
+@mixin spinner(
+  $numberColors,
+  $fillColor,
+  $fillColor2: null,
+  $fillColor3: null,
+  $loading: ".loader",
+  $size: 2rem,
+  $borderWidth: 0.1rem,
+  $speed: 0.6s,
+  $bgColor: transparent
+) {
+  #{$loading} {
+    position: relative;
 
-	#{$loading} {
-		position: relative;
+    &-spinner {
+      @extend %position-center;
+      @include size($size);
+      margin-top: math.div($size, -2);
+      margin-left: math.div($size, -2);
+      border-radius: 50%;
+      border: $borderWidth solid $bgColor;
+      @if $numberColors == 1 {
+        border-top-color: $fillColor;
+      } @else if $numberColors == 2 {
+        border-top-color: $fillColor;
+        border-bottom-color: $fillColor2;
+      } @else if $numberColors == 3 {
+        border-top-color: $fillColor;
+        border-bottom-color: $fillColor2;
+        border-right-color: $fillColor3;
+      }
+      animation: spinner $speed linear infinite;
+    }
+  }
 
-		&-spinner {
-			@extend %position-center;
-			@include size($size);
-			margin-top: math.div($size, -2);
-			margin-left: math.div($size, -2);
-			border-radius: 50%;
-			border: $borderWidth solid $bgColor;
-			@if $numberColors == 1 {
-				border-top-color: $fillColor;
-			}
-			@else if $numberColors == 2 {
-				border-top-color: $fillColor;
-				border-bottom-color: $fillColor2;
-			}
-			@else if $numberColors == 3 {
-				border-top-color: $fillColor;
-				border-bottom-color: $fillColor2;
-				border-right-color: $fillColor3;
-			}
-			animation: spinner $speed linear infinite;
-		}
-	}
-
-	@include keyframes(spinner) {
-		from {
-			@include rotate(0);
-		}
-		to {
-			@include rotate(360);
-		}
-	}
+  @include keyframes(spinner) {
+    from {
+      @include rotate(0);
+    }
+    to {
+      @include rotate(360);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
 audio#shuffling-sound
 	source(:src='shuffling' type='audio/mpeg')
 
@@ -7,10 +7,17 @@ audio#shuffling-finish
 </template>
 
 <script>
-	export default {
-		props: {
-			shuffling: String,
-			flute: String
-		}
-	}
+export default {
+  props: {
+    shuffling: {
+      type: String,
+      required: true
+    },
+
+    flute: {
+      type: String,
+      required: true
+    }
+  }
+};
 </script>

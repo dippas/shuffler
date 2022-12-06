@@ -1,3 +1,5 @@
 <script>
-	export const randomRounds = () => Math.floor(Math.random() * 6) + 5
+const randomRounds = () => Math.floor(Math.random() * 6) + 5;
+
+export { randomRounds };
 </script>

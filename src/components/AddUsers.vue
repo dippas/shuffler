@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
 .users(v-cloak)
 	form.users__form(@submit.prevent='addNewUser' autocomplete='off' novalidate)
 		fieldset.users__fieldset
@@ -20,63 +20,58 @@
 </template>
 
 <script>
-
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue';
 
 export default {
-	setup() {
-		let base64ImagePath,
-			startShufflerButton,
-			preview = ref(null)
-		
-		const newUser = ref(null),
-			userAdded = ref(null)
-			
+  setup() {
+    let startShufflerButton,
+      preview = ref(null);
 
-		const addNewUser = e => {
-			if(newUser.value) {
-				startShufflerButton.style.display = 'block'
-				
-				fetch('http://localhost:7000/members', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({
-						name: newUser.value,
-						photo: preview.value.src ? preview.value.src : null
-					})
-				})
-				e.target.reset()
-				userAdded.value.textContent = 'User added'
-				
-				setTimeout(() => {
-					newUser.value = ''
-					userAdded.value.textContent = ''
-					preview.value.src ? preview.value.removeAttribute('src') : ''
-				}, 1000)
-			}
-			else {
-				alert('No user added!')
-			}
-		}
+    const newUser = ref(null),
+      userAdded = ref(null);
 
-		const createBase64Image = fileObject => {
-			const reader = new FileReader()
-			reader.addEventListener('load', e => preview.value.src = e.target.result)
-			reader.readAsDataURL(fileObject)
-		}
+    const addNewUser = e => {
+      if (newUser.value) {
+        startShufflerButton.style.display = 'block';
 
-		const uploadFile = e => createBase64Image(e.target.files[0])
+        fetch('http://localhost:7000/members', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: newUser.value,
+            photo: preview.value.src ? preview.value.src : null
+          })
+        });
+        e.target.reset();
+        userAdded.value.textContent = 'User added';
 
-		onMounted(() => startShufflerButton = document.querySelector('.shuffler-ready'))
+        setTimeout(() => {
+          newUser.value = '';
+          userAdded.value.textContent = '';
+          preview.value.src ? preview.value.removeAttribute('src') : '';
+        }, 1000);
+      } else {
+        alert('No user added!');
+      }
+    };
 
-		return { newUser, addNewUser, uploadFile, userAdded, preview }
-	}
-}
+    const createBase64Image = fileObject => {
+      const reader = new FileReader();
+      reader.addEventListener('load', e => (preview.value.src = e.target.result));
+      reader.readAsDataURL(fileObject);
+    };
+
+    const uploadFile = e => createBase64Image(e.target.files[0]);
+
+    onMounted(() => (startShufflerButton = document.querySelector('.shuffler-ready')));
+
+    return { newUser, addNewUser, uploadFile, userAdded, preview };
+  }
+};
 </script>
 
-<style lang='scss' scoped>
-	@import '../scss/buttons',
-			'../scss/users'
+<style lang="scss" scoped>
+@import '../scss/buttons', '../scss/users';
 </style>

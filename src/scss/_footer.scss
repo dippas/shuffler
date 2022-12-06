@@ -1,12 +1,12 @@
 .footer {
-	@include fluidProperty('font-size', .75);
-	@include fixed(right 2rem bottom 2rem);
-	font-weight: var(--medium);
-	color: rgb(var(--white));
+  @include fluidProperty("font-size", 0.75);
+  @include fixed(right 2rem bottom 2rem);
+  font-weight: var(--medium);
+  color: rgb(var(--white));
 
-	&__link {
-		color: rgb(var(--pink));
-		text-decoration: none;
-		font-weight: var(--bold);
-	}
+  &__link {
+    color: rgb(var(--pink));
+    text-decoration: none;
+    font-weight: var(--bold);
+  }
 }

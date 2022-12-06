@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
 h3.rounds(v-cloak) {{ roundsCopy }}
 	strong(ref='totalRounds')
 button.button.button--white.button--reset(@click='reset' v-show='counter' :disabled='isDisabled') {{ resetCopy }}
@@ -22,112 +22,134 @@ Suspense
 </template>
 
 <script>
-	import { ref, onMounted } from 'vue'
-	import { setDailyBackground } from '../helpers/background.vue'
-	import { randomRounds } from '../helpers/randomNumber.vue'
-	import { confettiEffect }  from '../helpers/confettiEffect.vue'
-	import { users } from '../helpers/users.vue'
-	import { newDay } from '../helpers/newDay.vue'
+import { ref, onMounted } from 'vue';
+import { setDailyBackground } from '../helpers/background.vue';
+import { randomRounds } from '../helpers/randomNumber.vue';
+import { confettiEffect } from '../helpers/confettiEffect.vue';
+import { users } from '../helpers/users.vue';
 
-	export default {
-		props: {
-			roundsCopy: String,
-			resetCopy: String,
-			shuffleCopy: String,
-			shuffleDelete: String,
-			shuffleEdit: String
-		},
+export default {
+  props: {
+    roundsCopy: {
+      type: String,
+      required: true
+    },
+    resetCopy: {
+      type: String,
+      required: true
+    },
+    shuffleCopy: {
+      type: String,
+      required: true
+    },
+    shuffleDelete: {
+      type: String,
+      required: true
+    },
+    shuffleEdit: {
+      type: String,
+      required: true
+    }
+  },
 
-		setup() {
-			const members = users(),
-				totalRounds = ref(null),
-				counter = ref(0),
-				timeToMidnight =  newDay()
-				
-			let roundCount = randomRounds(),
-				isDisabled = ref(null),
-				shuffleSound,
-				finishSound,
-				shufflerContainer,
-				usersContainer
+  setup() {
+    const members = users(),
+      totalRounds = ref(null),
+      counter = ref(0);
 
-			const reset = () => {
-				finishSound.pause()
-				finishSound.currentTime = 0
-				counter.value = 0
-				roundCount = totalRounds.value.textContent = randomRounds()
-				members.sort((a, b) => a.name.localeCompare(b.name))
-				members.forEach(member => member.isWorking = true)
-			}
+    let roundCount = randomRounds(),
+      isDisabled = ref(null),
+      shuffleSound,
+      finishSound,
+      shufflerContainer,
+      usersContainer;
 
-			const shuffle = () =>  {
-				isDisabled.value = true
-				const shufflingMembers = setInterval(() => {
-					counter.value++
+    const reset = () => {
+      finishSound.pause();
+      finishSound.currentTime = 0;
+      counter.value = 0;
+      roundCount = totalRounds.value.textContent = randomRounds();
+      members.sort((a, b) => a.name.localeCompare(b.name));
+      members.forEach(member => (member.isWorking = true));
+    };
 
-					if (counter.value <= roundCount) {
-							shuffleSound.play()
-							totalRounds.value.textContent = roundCount - counter.value
-							
-							for (let i = members.length - 1; i > 0; i--) {
-								const randomId = Math.floor(Math.random() * (i + 1));
-								[members[i], members[randomId]] = [members[randomId], members[i]]
-							}
-							
-							if (counter.value === roundCount) {
-								clearInterval(shufflingMembers)
-								finishSound.play()
-								setTimeout(() => {
-									if(!finishSound.paused) {
-										isDisabled.value = false
-										confettiEffect()
-									}
-								}, 5500)	
-							}
-						}
-				}, 1000)
-			}
+    const shuffle = () => {
+      isDisabled.value = true;
+      const shufflingMembers = setInterval(() => {
+        counter.value++;
 
-			const deleteShuffle = () => {
-				while (members.length) {
-					
-					fetch(`http://localhost:7000/members/${members.length}`, {method: 'DELETE'})
+        if (counter.value <= roundCount) {
+          shuffleSound.play();
+          totalRounds.value.textContent = roundCount - counter.value;
 
-					members.pop()
+          for (let i = members.length - 1; i > 0; i--) {
+            const randomId = Math.floor(Math.random() * (i + 1));
+            [members[i], members[randomId]] = [members[randomId], members[i]];
+          }
 
-					if(!members.length) {
-						shufflerContainer.style.display =  'none'
-						usersContainer.style.display = 'block'
-						finishSound.pause()
-						finishSound.currentTime = 0
-						counter.value = 0
-					}
-				}
-			}
+          if (counter.value === roundCount) {
+            clearInterval(shufflingMembers);
+            finishSound.play();
+            setTimeout(() => {
+              if (!finishSound.paused) {
+                isDisabled.value = false;
+                confettiEffect();
+              }
+            }, 5500);
+          }
+        }
+      }, 1000);
+    };
 
-			const editList = () => {
-				shufflerContainer.style.display =  'none'
-				usersContainer.style.display = 'block'
-			}
+    const deleteShuffle = () => {
+      while (members.length) {
+        fetch(`http://localhost:7000/members/${members.length}`, {
+          method: 'DELETE'
+        });
 
-			const rounds = () => totalRounds.value.textContent = roundCount
+        members.pop();
 
-			onMounted(() => {
-				shuffleSound = document.getElementById('shuffling-sound')
-				finishSound = document.getElementById('shuffling-finish')
-				shufflerContainer = document.querySelector('.shuffler')
-				usersContainer = document.querySelector('.users')
-				rounds()
-				setDailyBackground()
-			})
+        if (!members.length) {
+          shufflerContainer.style.display = 'none';
+          usersContainer.style.display = 'block';
+          finishSound.pause();
+          finishSound.currentTime = 0;
+          counter.value = 0;
+        }
+      }
+    };
 
-			return { members, totalRounds, roundCount, counter, shuffle, reset, isDisabled, deleteShuffle, editList }
-		}
-	}
+    const editList = () => {
+      shufflerContainer.style.display = 'none';
+      usersContainer.style.display = 'block';
+    };
+
+    const rounds = () => (totalRounds.value.textContent = roundCount);
+
+    onMounted(() => {
+      shuffleSound = document.getElementById('shuffling-sound');
+      finishSound = document.getElementById('shuffling-finish');
+      shufflerContainer = document.querySelector('.shuffler');
+      usersContainer = document.querySelector('.users');
+      rounds();
+      setDailyBackground();
+    });
+
+    return {
+      members,
+      totalRounds,
+      roundCount,
+      counter,
+      shuffle,
+      reset,
+      isDisabled,
+      deleteShuffle,
+      editList
+    };
+  }
+};
 </script>
 
-<style lang='scss' scoped>
-	@import '../scss/list',
-			'../scss/buttons',
-			'../scss/rounds'
+<style lang="scss" scoped>
+@import '../scss/list', '../scss/buttons', '../scss/rounds';
 </style>

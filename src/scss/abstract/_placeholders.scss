@@ -1,28 +1,29 @@
 %position-center {
-	@include position(absolute, top 50% left 50%);
-	@include translate(-50%, -50%);
+  @include position(absolute, top 50% left 50%);
+  @include translate(-50%, -50%);
 }
 
 %position-center-v {
-	@include position(absolute, top 50%);
-	@include translate(0, -50%);
+  @include position(absolute, top 50%);
+  @include translate(0, -50%);
 }
 
 %position-center-h {
-	@include position(absolute, left 50%);
-	@include translate(-50%, 0);
+  @include position(absolute, left 50%);
+  @include translate(-50%, 0);
 }
 
 %block-center {
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 %hide-element {
-	@include absolute(left -9999.9rem);
+  @include absolute(left -9999.9rem);
 }
 
 %shadow {
-	transition: box-shadow .3s ease-in;
-	box-shadow: rgba(0, 0, 0, 0.3) 0px 1.9rem 3.8rem, rgba(0, 0, 0, 0.22) 0px 1.5rem 1.2rem;
+  transition: box-shadow 0.3s ease-in;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1.9rem 3.8rem,
+    rgba(0, 0, 0, 0.22) 0px 1.5rem 1.2rem;
 }
