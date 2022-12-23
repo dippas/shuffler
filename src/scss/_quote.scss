@@ -1,9 +1,9 @@
 .quote {
-  @include fluidProperty("font-size", 0.75);
+  @include fluidProperty('font-size', 0.75);
   font-weight: var(--bold);
 
   &__author {
-    @include fluidProperty("font-size", 0.7);
+    @include fluidProperty('font-size', 0.7);
     margin-bottom: 1rem;
   }
 

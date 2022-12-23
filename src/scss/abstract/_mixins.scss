@@ -12,8 +12,7 @@
   @each $o in top right bottom left {
     $i: index($args, $o);
 
-    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number
-    {
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
       #{$o}: nth($args, $i + 1);
     }
   }
@@ -22,23 +21,23 @@
 }
 
 // Positioning helpers
-@mixin absolute($args: "") {
+@mixin absolute($args: '') {
   @include position(absolute, $args);
 }
 
-@mixin fixed($args: "") {
+@mixin fixed($args: '') {
   @include position(fixed, $args);
 }
 
-@mixin relative($args: "") {
+@mixin relative($args: '') {
   @include position(relative, $args);
 }
 
-@mixin static($args: "") {
+@mixin static($args: '') {
   @include position(static, $args);
 }
 
-@mixin sticky($args: "") {
+@mixin sticky($args: '') {
   @include position(sticky, $args);
 }
 
@@ -111,7 +110,7 @@
   $fillColor,
   $fillColor2: null,
   $fillColor3: null,
-  $loading: ".loader",
+  $loading: '.loader',
   $size: 2rem,
   $borderWidth: 0.1rem,
   $speed: 0.6s,

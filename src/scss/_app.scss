@@ -32,21 +32,21 @@ body {
   color: rgb(var(--white));
 
   &::after {
-    content: "";
+    content: '';
     @include absolute(top 0 left 0);
     @include size(100%);
     background-color: rgba(var(--black), 0.5);
   }
 
   &__container {
-    @include z-index("sidewalk");
+    @include z-index('sidewalk');
     @include size(100%);
     @extend %block-center;
     position: relative;
   }
 
   &__box {
-    @include fluidProperty("padding", 3);
+    @include fluidProperty('padding', 3);
     @include size(100%);
     @include relative(top 0);
     display: grid;

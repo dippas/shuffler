@@ -1,6 +1,6 @@
 .button {
   @include border-radius(1rem);
-  @include fluidProperty("font-size", 0.5);
+  @include fluidProperty('font-size', 0.5);
   display: inline-flex;
   align-items: center;
   letter-spacing: 0.2rem;

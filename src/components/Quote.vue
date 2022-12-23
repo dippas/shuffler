@@ -12,8 +12,8 @@ blockquote
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { newDay } from "../helpers/newDay.vue";
+import { ref, onMounted } from 'vue';
+import { newDay } from '../helpers/newDay.vue';
 
 export default {
   setup() {
@@ -29,13 +29,12 @@ export default {
         const today = new Date(),
           days = today.getTime() / (1000 * 60 * 60 * 24);
 
-        fetch("https://api.quotable.io/quotes?limit=150")
+        fetch('https://api.quotable.io/quotes?limit=150')
           .then(response => response.json())
           .then(data => {
             isLoading.value = false;
             const results = data.results,
-              quoteIndex =
-                Object.keys(results)[Math.floor(days) % results.length],
+              quoteIndex = Object.keys(results)[Math.floor(days) % results.length],
               slug = results[quoteIndex].authorSlug;
 
             author.value.textContent = results[quoteIndex].author;
@@ -56,5 +55,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/quote";
+@import '../scss/quote';
 </style>

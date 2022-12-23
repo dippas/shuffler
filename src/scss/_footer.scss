@@ -1,5 +1,5 @@
 .footer {
-  @include fluidProperty("font-size", 0.75);
+  @include fluidProperty('font-size', 0.75);
   @include fixed(right 2rem bottom 2rem);
   font-weight: var(--medium);
   color: rgb(var(--white));

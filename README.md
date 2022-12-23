@@ -25,11 +25,11 @@ Give a ⭐️ if you enjoyed this project!
 
 ## Built With
 
-* [Vue 3](https://vuejs.org/)
-* [SCSS](https://sass-lang.com/)
-* [Pug](https://pugjs.org/)
-* [Vite](https://vitejs.dev/)
-* [JSON Server](https://github.com/typicode/json-server)
+- [Vue 3](https://vuejs.org/)
+- [SCSS](https://sass-lang.com/)
+- [Pug](https://pugjs.org/)
+- [Vite](https://vitejs.dev/)
+- [JSON Server](https://github.com/typicode/json-server)
 
 ## Getting Started
 
@@ -67,13 +67,13 @@ yarn preview
 
 ## Features
 
-* Shuffle Randomly Users (with random rounds between 5 and 10)
-* CRUD application with JSON Server (with ability to upload image/avatar stored in base64, fallback to [UI avatars API](https://eu.ui-avatars.com) if no image provided)
-* Randomly select daily who will shuffle
-* Daily Random Backgrounds from [Picsum API](https://picsum.photos/)
-* Daily Random Quotes and it's author with picture from [Quoteable API](https://api.quotable.io/)
-* Sound of deck cards shuffling
-* Confetti effect when shuffle finished sorting (with an extra audio - 20th Century Fox Intro Flute)
+- Shuffle Randomly Users (with random rounds between 5 and 10)
+- CRUD application with JSON Server (with ability to upload image/avatar stored in base64, fallback to [UI avatars API](https://eu.ui-avatars.com) if no image provided)
+- Randomly select daily who will shuffle
+- Daily Random Backgrounds from [Picsum API](https://picsum.photos/)
+- Daily Random Quotes and it's author with picture from [Quoteable API](https://api.quotable.io/)
+- Sound of deck cards shuffling
+- Confetti effect when shuffle finished sorting (with an extra audio - 20th Century Fox Intro Flute)
 
 ## ChangeLog
 

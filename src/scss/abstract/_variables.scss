@@ -1,8 +1,8 @@
 //CSS vars
 :root {
   --font-base: 62.5%;
-  --system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --black: 0, 0, 0;
   --gray: 120, 120, 120;
   --pink: 234, 82, 111;
@@ -26,13 +26,13 @@ $extra-wide: 100em; //1600px
 //breakpoints
 $breakpoints: (
   //types
-  "extra-small": $extra-small,
-  "small": $small,
-  "medium": $medium,
-  "large": $large,
-  "extra-large": $extra-large,
-  "wide": $wide,
-  "extra-wide": $extra-wide //finish types
+  'extra-small': $extra-small,
+  'small': $small,
+  'medium': $medium,
+  'large': $large,
+  'extra-large': $extra-large,
+  'wide': $wide,
+  'extra-wide': $extra-wide //finish types
 );
 
 // Caching current breakpoint
@@ -43,14 +43,14 @@ $current-breakpoint: $default-breakpoint;
 //z-index
 $z-index: (
   //values
-  "pothole": -1,
-  "basement": 0,
-  "sidewalk": 1,
-  "bungalow": 40,
-  "bungalow-chimney": 50,
-  "house": 60,
-  "tower": 70,
-  "skyscrapper": 80,
-  "sky": 90,
-  "satellite": 100 //finish z-index
+  'pothole': -1,
+  'basement': 0,
+  'sidewalk': 1,
+  'bungalow': 40,
+  'bungalow-chimney': 50,
+  'house': 60,
+  'tower': 70,
+  'skyscrapper': 80,
+  'sky': 90,
+  'satellite': 100 //finish z-index
 );

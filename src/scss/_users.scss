@@ -7,7 +7,7 @@
     margin-bottom: 2rem;
     border: none;
 
-    @include bp("large") {
+    @include bp('large') {
       display: flex;
     }
   }
@@ -35,8 +35,8 @@
   }
 
   &__legend {
-    @include fluidProperty("font-size", 1);
-    @include fluidProperty("padding", 0.5);
+    @include fluidProperty('font-size', 1);
+    @include fluidProperty('padding', 0.5);
     color: rgb(var(--white));
     margin-bottom: 2rem;
     font-weight: var(--fw-bold);
@@ -48,8 +48,8 @@
   }
 
   &__name {
-    @include fluidProperty("padding", 0.8);
-    @include fluidProperty("font-size", 0.75);
+    @include fluidProperty('padding', 0.8);
+    @include fluidProperty('font-size', 0.75);
     @include border-radius(1rem);
     flex-basis: 70%;
     line-height: line-height(20, 16);
@@ -60,7 +60,7 @@
     margin-bottom: 2rem;
     width: 100%;
 
-    @include bp("large") {
+    @include bp('large') {
       margin-bottom: 0;
     }
 
