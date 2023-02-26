@@ -1,6 +1,7 @@
-<template lang="pug">
-footer(class='footer') {{ copy }}
-	a(class='footer__link' :href='authorLink' target='_blank') {{ author }}
+<template>
+  <footer class="footer">
+    {{ copy }}<a class="footer__link" :href="authorLink" target="_blank">{{ author }}</a>
+  </footer>
 </template>
 
 <script>

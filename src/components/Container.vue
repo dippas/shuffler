@@ -1,14 +1,25 @@
-<template lang="pug">
-.shuffler-ready(v-cloak)
-	label.shuffler-ready__label.button.button--pink(v-show='!checked')
-		input.shuffler-ready__check(name='ready' type="checkbox" v-model='checked')
-		| Ready to Shuffle?
-	button.button(type='button' @click='startShuffler' v-show='checked') Start Shuffling
-
-.shuffler(v-cloak)
-	User(copy='Who shuffles — ')
-	Shuffler(roundsCopy='Rounds: ' resetCopy='Reset' shuffleCopy='Shuffle!' shuffleDelete='Delete!' shuffleEdit='Edit List' :key='cId')
-	Quote
+<template>
+  <div v-cloak class="shuffler-ready">
+    <label v-show="!checked" class="shuffler-ready__label button button--pink">
+      <input v-model="checked" class="shuffler-ready__check" name="ready" type="checkbox" />Ready to
+      Shuffle?
+    </label>
+    <button v-show="checked" class="button" type="button" @click="startShuffler">
+      Start Shuffling
+    </button>
+  </div>
+  <div v-cloak class="shuffler">
+    <User copy="Who shuffles — " />
+    <Shuffler
+      :key="cId"
+      rounds-copy="Rounds: "
+      reset-copy="Reset"
+      shuffle-copy="Shuffle!"
+      shuffle-delete="Delete!"
+      shuffle-edit="Edit List"
+    />
+    <Quote />
+  </div>
 </template>
 
 <script>
@@ -25,14 +36,14 @@ export default {
 
   data() {
     return {
-      cId: 0,
+      counter: 0,
       checked: false
     };
   },
 
   methods: {
     startShuffler() {
-      this.cId++;
+      this.counter++;
       User.setup().randomizeShuffler();
     }
   }

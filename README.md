@@ -27,7 +27,6 @@ Give a ⭐️ if you enjoyed this project!
 
 - [Vue 3](https://vuejs.org/)
 - [SCSS](https://sass-lang.com/)
-- [Pug](https://pugjs.org/)
 - [Vite](https://vitejs.dev/)
 - [JSON Server](https://github.com/typicode/json-server)
 

@@ -1,14 +1,18 @@
-<template lang="pug">
-.loader(ref='loading' v-show='isLoading')
-	.loader-spinner
-
-blockquote
-	.quote(ref='quote')
-	cite
-		figure
-			figcaption.quote__author(ref='author')
-			a(ref='link' target='_blank')
-				img(v-cloak class='quote__thumbnail' ref='thumbnail')
+<template>
+  <div v-show="isLoading" ref="loading" class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+  <blockquote>
+    <div ref="quote" class="quote"></div>
+    <cite>
+      <figure>
+        <figcaption ref="author"></figcaption>
+        <a ref="link" target="_blank" class="quote__author"
+          ><img v-cloak ref="thumbnail" class="quote__thumbnail"
+        /></a>
+      </figure>
+    </cite>
+  </blockquote>
 </template>
 
 <script>

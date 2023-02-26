@@ -1,9 +1,10 @@
-<template lang="pug">
-audio#shuffling-sound
-	source(:src='shuffling' type='audio/mpeg')
-
-audio#shuffling-finish
-	source(:src='flute' type='audio/mpeg')
+<template>
+  <audio id="shuffling-sound">
+    <source :src="shuffling" type="audio/mpeg" />
+  </audio>
+  <audio id="shuffling-finish">
+    <source :src="flute" type="audio/mpeg" />
+  </audio>
 </template>
 
 <script>

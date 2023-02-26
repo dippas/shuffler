@@ -1,5 +1,5 @@
-<template lang="pug">
-h1(v-cloak class='title') {{ copy }} {{ currentDate }}
+<template>
+  <h1 v-cloak class="title">{{ copy }} {{ currentDate }}</h1>
 </template>
 
 <script>

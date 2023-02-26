@@ -1,24 +1,48 @@
-<template lang="pug">
-h3.rounds(v-cloak) {{ roundsCopy }}
-	strong(ref='totalRounds')
-button.button.button--white.button--reset(@click='reset' v-show='counter' :disabled='isDisabled') {{ resetCopy }}
-button.button.button--turquoise(@click='shuffle' v-show='!counter') {{ shuffleCopy }}
-button.button.button--pink(@click='deleteShuffle' :disabled='isDisabled') {{ shuffleDelete }}
-button.button(@click='editList' v-show='!counter') {{ shuffleEdit }}
-Suspense
-	template(#default)
-		transition-group(name='list' tag='ul' v-cloak class='list')
-			li.list__item(v-for='(member, idx) in members' :key='member.id' v-show='member.isWorking' v-cloak)
-				.list__box
-					figure.list__figure
-						img.list__image(:src='member.photo' :alt='member.name')
-					span.list__text {{ member.name }}
-					button.list__info(@click='member.isWorking = !member.isWorking' :disabled='isDisabled')
-						span Working
-		
-	template(#fallback)
-		div Loading...
-
+<template>
+  <h3 v-cloak class="rounds">{{ roundsCopy }}<strong ref="totalRounds"></strong></h3>
+  <button
+    v-show="counter"
+    :disabled="isDisabled"
+    class="button button--white button--reset"
+    @click="reset"
+  >
+    {{ resetCopy }}
+  </button>
+  <button v-show="!counter" class="button button--turquoise" @click="shuffle">
+    {{ shuffleCopy }}
+  </button>
+  <button :disabled="isDisabled" class="button button--pink" @click="deleteShuffle">
+    {{ shuffleDelete }}
+  </button>
+  <button v-show="!counter" class="button" @click="editList">{{ shuffleEdit }}</button>
+  <Suspense>
+    <template #default>
+      <transition-group v-cloak class="list" name="list" tag="ul">
+        <li
+          v-for="member in members"
+          v-cloak
+          v-show="member.isWorking"
+          :key="member.id"
+          class="list__item"
+        >
+          <div class="list__box">
+            <figure class="list__figure">
+              <img class="list__image" :src="member.photo" :alt="member.name" />
+            </figure>
+            <span class="list__text">{{ member.name }}</span>
+            <button
+              class="list__info"
+              :disabled="isDisabled"
+              @click="member.isWorking = !member.isWorking"
+            >
+              <span>Working</span>
+            </button>
+          </div>
+        </li>
+      </transition-group>
+    </template>
+    <template #fallback> Loading... </template>
+  </Suspense>
 </template>
 
 <script>
@@ -70,7 +94,7 @@ export default {
       counter.value = 0;
       roundCount = totalRounds.value.textContent = randomRounds();
       members.sort((a, b) => a.name.localeCompare(b.name));
-      members.forEach(member => (member.isWorking = true));
+      members.map(member => (member.isWorking = true));
     };
 
     const shuffle = () => {

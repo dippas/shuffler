@@ -1,6 +1,5 @@
-<template lang="pug">
-h2.choice(v-cloak) {{ copy }}
-	span.who-shuffles
+<template>
+  <h2 v-cloak class="choice">{{ copy }}<span class="who-shuffles"></span></h2>
 </template>
 
 <script>
