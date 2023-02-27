@@ -3,9 +3,12 @@
   width: 90%;
 
   @include bp('large') {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 15rem));
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
   }
 
   &-move {
@@ -16,11 +19,11 @@
     @extend %block-center;
     width: calc(100% / 3);
     transition: 0.4s ease-out;
+    margin-bottom: 2rem;
 
     @include bp('large') {
       width: fit-content;
-      margin-right: 1rem;
-      margin-left: 0;
+      margin-bottom: 0;
     }
 
     &:hover {
@@ -32,23 +35,18 @@
     @include border-radius(1rem);
     @extend %shadow;
     overflow: hidden;
-    margin-bottom: 3rem;
   }
 
   &__image {
     @include size(100%);
     object-fit: cover;
     display: block;
-    aspect-ratio: 1 / 1;
-
-    @include bp('large') {
-      @include fluidProperty('width', 5);
-    }
+    aspect-ratio: 1;
   }
 
   &__text {
-    @include fluidProperty('padding', 0.8);
-    @include fluidProperty('font-size', 0.8);
+    @include fluidProperty('padding', 0.4);
+    @include fluidProperty('font-size', 0.7);
     display: block;
     font-weight: var(--bold);
     background-color: rgb(var(--linen));

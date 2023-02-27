@@ -28,7 +28,7 @@ body {
   @include relative(top 0);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100vh;
   color: rgb(var(--white));
 
   &::after {
@@ -48,6 +48,7 @@ body {
   &__box {
     @include fluidProperty('padding', 3);
     @include size(100%);
+    min-height: 100vh;
     @include relative(top 0);
     display: grid;
     text-align: center;
