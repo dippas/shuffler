@@ -1,3 +1,24 @@
 {
-  "members": []
+  "members": [
+    {
+      "name": "Earl Kramer",
+      "photo": "/public/assets/avatars/1.jpg"
+    },
+    {
+      "name": "Malcom Benamati",
+      "photo": "/public/assets/avatars/2.jpg"
+    },
+    {
+      "name": "Claud Fogle",
+      "photo": "/public/assets/avatars/3.jpg"
+    },
+    {
+      "name": "Nichelle Pato",
+      "photo": "/public/assets/avatars/4.jpg"
+    },
+    {
+      "name": "Burl Calimer",
+      "photo": "/public/assets/avatars/5.jpg"
+    }
+  ]
 }
