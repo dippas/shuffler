@@ -1,5 +1,5 @@
 <template>
-  <div v-cloak lass="users">
+  <div v-cloak class="users">
     <form
       class="users__form"
       autocomplete="off"
