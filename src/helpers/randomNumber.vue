@@ -1,5 +1,5 @@
 <script>
-const randomRounds = () => Math.floor(Math.random() * 6) + 5;
+const generateRandomRounds = () => Math.floor(Math.random() * 6) + 5;
 
-export { randomRounds };
+export { generateRandomRounds };
 </script>

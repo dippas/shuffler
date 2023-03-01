@@ -1,20 +1,19 @@
 <script>
-import { newDay } from '../helpers/newDay.vue';
+import { getTimeToMidnight } from './getTimeToMidnight.vue';
 
-const setDailyBackground = () => {
-  const timeToMidnight = newDay();
+const setDailyBackground = async element => {
+  const timeToMidnight = getTimeToMidnight();
 
-  fetch('https://picsum.photos/v2/list')
-    .then(response => response.json())
-    .then(data => {
-      if (timeToMidnight > 0) {
-        const today = new Date(),
-          days = today.getTime() / (1000 * 60 * 60 * 24),
-          index = Math.floor(days) % data.length;
+  const response = await fetch('https://picsum.photos/v2/list');
+  const data = await response.json();
 
-        document.querySelector('.app').style.backgroundImage = `url('${data[index].download_url}')`;
-      }
-    });
+  if (timeToMidnight > 0) {
+    const today = new Date(),
+      days = today.getTime() / (1000 * 60 * 60 * 24),
+      index = Math.floor(days) % data.length;
+
+    element.style.backgroundImage = `url('${data[index].download_url}')`;
+  }
 };
 
 export { setDailyBackground };
