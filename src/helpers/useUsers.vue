@@ -3,34 +3,31 @@ import { onMounted, reactive } from 'vue';
 
 const useUsers = () => {
   const members = reactive([]);
-  // let shufflerContainer, shufflerReady, usersContainer;
-  fetch('http://localhost:7000/members')
-    .then(response => response.json())
-    .then(data => {
-      // shufflerReady.style.display = 'none';
-      // shufflerContainer.style.display = data.length ? 'block' : 'none';
-      // usersContainer.style.display = data.length ? 'none' : 'block';
-      const users = data;
-      for (const id in users) {
-        members.push({
-          id: id,
-          name: users[id].name,
-          photo:
-            users[id]?.photo ??
-            `https://eu.ui-avatars.com/api/?background=random&name=${users[id].name}`,
-          isWorking: true
-        });
-        members.sort((a, b) => a.name.localeCompare(b.name));
-      }
-    });
+
+  const fetchUsers = async () => {
+    const response = await fetch('http://localhost:7000/members');
+    const data = await response.json();
+    const tempMembers = [];
+    for (const id in data) {
+      tempMembers.push({
+        id: id,
+        name: data[id].name,
+        photo:
+          data[id]?.photo ??
+          `https://eu.ui-avatars.com/api/?background=random&name=${data[id].name}`,
+        isWorking: true
+      });
+    }
+    tempMembers.sort((a, b) => a.name.localeCompare(b.name));
+    members.splice(0, members.length, ...tempMembers);
+    return members;
+  };
 
   onMounted(() => {
-    // shufflerReady = document.querySelector('.shuffler-ready');
-    // shufflerContainer = document.querySelector('.shuffler');
-    // usersContainer = document.querySelector('.users');
+    fetchUsers();
   });
 
-  return members;
+  return { members, fetchUsers };
 };
 
 export { useUsers };

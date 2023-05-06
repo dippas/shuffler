@@ -16,14 +16,18 @@
   <button v-show="!counter" class="button button--turquoise" @click="shuffle">
     {{ shuffleCopy }}
   </button>
-  <button class="button button--pink" :disabled="members.length === 0" @click="deleteShuffle">
+  <button
+    class="button button--pink"
+    :disabled="members.length === 0 || isDisabled"
+    @click="deleteShuffle"
+  >
     {{ shuffleDelete }}
   </button>
   <button v-show="!counter" class="button" @click="editList">{{ shuffleEdit }}</button>
   <Suspense>
     <template #default>
       <transition-group v-cloak class="list" name="list" tag="ul">
-        <li v-for="member in shuffledMembers" v-cloak :key="member.id" class="list__item">
+        <li v-for="member in members" v-cloak :key="member.id" class="list__item">
           <div class="list__box">
             <figure class="list__figure">
               <img class="list__image" :src="member.photo" :alt="member.name" />
@@ -76,10 +80,11 @@ export default {
   },
 
   setup() {
-    const members = useUsers(),
-      totalRounds = ref(null),
-      timeToMidnight = getTimeToMidnight(),
-      counter = ref(0);
+    const { members, fetchUsers } = useUsers();
+    const totalRounds = ref(null);
+    const timeToMidnight = getTimeToMidnight();
+    const counter = ref(0);
+    const usersLoaded = ref(false);
 
     let roundCount = generateRandomRounds(),
       isDisabled = ref(null),
@@ -150,7 +155,7 @@ export default {
     };
 
     const whoShufflesRandomizer = () => {
-      if (timeToMidnight > 0) {
+      if (timeToMidnight > 0 && usersLoaded) {
         setTimeout(() => {
           const today = new Date();
           const days = today.getTime() / (1000 * 60 * 60 * 24);
@@ -162,6 +167,10 @@ export default {
     };
 
     const rounds = () => (totalRounds.value.textContent = roundCount);
+
+    fetchUsers().then(() => {
+      usersLoaded.value = true;
+    });
 
     onMounted(() => {
       shuffling = document.getElementById('shuffling');
@@ -180,6 +189,7 @@ export default {
       counter,
       isDisabled,
       whoShuffles,
+      usersLoaded,
       shuffle,
       reset,
       deleteShuffle,

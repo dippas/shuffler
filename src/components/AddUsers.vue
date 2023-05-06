@@ -1,5 +1,5 @@
 <template>
-  <div v-cloak class="users">
+  <div v-cloak v-if="showForm" class="users">
     <form
       class="users__form"
       autocomplete="off"
@@ -25,7 +25,7 @@
           <span class="users__icon"></span>Upload Avatar
         </label>
       </fieldset>
-      <button class="button button--coral">Add New User</button>
+      <button v-if="isShufflerReady" class="button button--coral">Add New User</button>
     </form>
     <article v-if="newUser" class="users__preview">
       <h2 ref="userAdded" class="users__legend">{{ newUser }}</h2>
@@ -35,19 +35,20 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { ref, reactive } from 'vue';
+import { useUsers } from '../helpers/useUsers.vue';
 
 export default {
   setup() {
-    const newUser = ref(null);
     const userAdded = ref(null);
-    const startShufflerButton = ref(null);
     const preview = ref(null);
+    const showForm = ref(false);
+    const usersLoaded = ref(false);
+    const { members, fetchUsers } = useUsers();
+    const newUser = reactive(null);
 
     const addNewUser = async e => {
       if (newUser.value) {
-        startShufflerButton.value.style.display = 'block';
-
         try {
           const response = await fetch('http://localhost:7000/members', {
             method: 'POST',
@@ -88,9 +89,12 @@ export default {
 
     const uploadFile = e => createBase64Image(e.target.files[0]);
 
-    onMounted(() => (startShufflerButton.value = document.querySelector('.shuffler-ready')));
+    fetchUsers().then(() => {
+      usersLoaded.value = true;
+      showForm.value = !members.length;
+    });
 
-    return { newUser, preview, userAdded, addNewUser, uploadFile };
+    return { newUser, preview, userAdded, showForm, usersLoaded, addNewUser, uploadFile };
   }
 };
 </script>
