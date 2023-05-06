@@ -1,39 +1,36 @@
 <script>
-import { onMounted, reactive, toRefs } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 const useUsers = () => {
-  const state = reactive({
-    members: [],
-    isLoading: true,
-    isShufflerVisible: true,
-    isUsersVisible: false
+  const members = reactive([]);
+  // let shufflerContainer, shufflerReady, usersContainer;
+  fetch('http://localhost:7000/members')
+    .then(response => response.json())
+    .then(data => {
+      // shufflerReady.style.display = 'none';
+      // shufflerContainer.style.display = data.length ? 'block' : 'none';
+      // usersContainer.style.display = data.length ? 'none' : 'block';
+      const users = data;
+      for (const id in users) {
+        members.push({
+          id: id,
+          name: users[id].name,
+          photo:
+            users[id]?.photo ??
+            `https://eu.ui-avatars.com/api/?background=random&name=${users[id].name}`,
+          isWorking: true
+        });
+        members.sort((a, b) => a.name.localeCompare(b.name));
+      }
+    });
+
+  onMounted(() => {
+    // shufflerReady = document.querySelector('.shuffler-ready');
+    // shufflerContainer = document.querySelector('.shuffler');
+    // usersContainer = document.querySelector('.users');
   });
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch('http://localhost:7000/members');
-      const data = await response.json();
-
-      state.members = data.map(({ id, name, photo }) => ({
-        id: id,
-        name: name,
-        photo: photo ?? `https://eu.ui-avatars.com/api/?background=random&name=${name}`,
-        isWorking: true
-      }));
-
-      state.members.sort((a, b) => a.name.localeCompare(b.name));
-      state.isLoading = false;
-      state.isShufflerVisible = state.members.length;
-      state.isUsersVisible = !state.isShufflerVisible;
-    } catch (error) {
-      console.error(error);
-      alert('Something went wrong, please try again later.');
-    }
-  };
-
-  onMounted(fetchData);
-
-  return toRefs(state);
+  return members;
 };
 
 export { useUsers };

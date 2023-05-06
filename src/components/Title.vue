@@ -11,7 +11,6 @@ export default {
     },
     currentDate: {
       type: String,
-      required: true,
       default: () => new Date().toLocaleDateString('pt-PT')
     }
   }

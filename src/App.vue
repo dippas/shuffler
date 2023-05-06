@@ -1,7 +1,7 @@
 <template>
   <div class="app__container">
     <div class="app__box">
-      <Audio shuffling="assets/audio/shuffling.mp3" flute="assets/audio/flute.mp3"></Audio>
+      <Audio :audio-sources="audioSources"></Audio>
       <Title copy="Shuffler — "></Title>
       <AddUsers></AddUsers>
       <Container></Container>
@@ -16,6 +16,17 @@ import AddUsers from './components/AddUsers.vue';
 import Container from './components/Container.vue';
 import Title from './components/Title.vue';
 import Footer from './components/Footer.vue';
+
+const audioSources = [
+  {
+    id: 'shuffling',
+    url: 'assets/audio/shuffling.mp3'
+  },
+  {
+    id: 'flute',
+    url: 'assets/audio/flute.mp3'
+  }
+];
 </script>
 
 <style lang="scss">

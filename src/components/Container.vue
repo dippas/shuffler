@@ -1,17 +1,21 @@
 <template>
   <div v-cloak class="shuffler-ready">
-    <label v-show="!checked" class="shuffler-ready__label button button--pink">
-      <input v-model="checked" class="shuffler-ready__check" name="ready" type="checkbox" />Ready to
-      Shuffle?
+    <label v-show="!state.checked" class="shuffler-ready__label button button--pink">
+      <input
+        v-model="state.checked"
+        class="shuffler-ready__check"
+        name="ready"
+        type="checkbox"
+      />Ready to Shuffle?
     </label>
-    <button v-show="checked" class="button" type="button" @click="startShuffler">
+    <button v-show="state.checked" class="button" type="button" @click="startShuffler">
       Start Shuffling
     </button>
   </div>
   <div v-cloak class="shuffler">
-    <User copy="Who shuffles — " />
     <Shuffler
-      :key="cId"
+      :key="state.counter"
+      shuffler-copy="Who shuffles? — "
       rounds-copy="Rounds: "
       reset-copy="Reset"
       shuffle-copy="Shuffle!"
@@ -23,33 +27,32 @@
 </template>
 
 <script>
+import { reactive } from 'vue';
 import Shuffler from './Events.vue';
-import User from './User.vue';
 import Quote from './Quote.vue';
 
 export default {
   components: {
     Shuffler,
-    User,
     Quote
   },
 
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       counter: 0,
       checked: false
-    };
-  },
+    });
 
-  methods: {
-    startShuffler() {
-      this.counter++;
-      User.setup().randomizeShuffler();
-    }
+    const startShuffler = () => {
+      state.counter++;
+    };
+
+    return { state, startShuffler };
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/buttons', '../scss/shuffler';
+@import '../scss/buttons';
+@import '../scss/shuffler';
 </style>

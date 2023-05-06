@@ -30,15 +30,15 @@
     "db": "json-server -p 7000 db.json"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.2.1",
     "@vue/compiler-sfc": "^3.2.47",
-    "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-vue": "^9.9.0",
-    "prettier": "^2.8.4",
-    "sass": "^1.58.3",
-    "vite": "^4.1.4",
-    "json-server": "^0.17.2"
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "json-server": "^0.17.3",
+    "prettier": "^2.8.8",
+    "sass": "^1.62.1",
+    "vite": "^4.3.3"
   },
   "dependencies": {
     "canvas-confetti": "^1.6.0",

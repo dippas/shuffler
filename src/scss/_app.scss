@@ -1,15 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  outline: 0;
-  font-size: 100%;
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
 
-  &::before,
-  &::after {
-    box-sizing: border-box;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
@@ -48,8 +45,8 @@ body {
   &__box {
     @include fluidProperty('padding', 3);
     @include size(100%);
-    min-height: 100vh;
     @include relative(top 0);
+    min-height: 100vh;
     display: grid;
     text-align: center;
     background-color: rgba(var(--gray), 0.8);

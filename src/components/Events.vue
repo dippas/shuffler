@@ -1,9 +1,14 @@
 <template>
-  <h3 v-cloak class="rounds">{{ roundsCopy }}<strong ref="totalRounds"></strong></h3>
+  <h2 v-cloak class="choice">
+    {{ shufflerCopy }}<span class="who-shuffles">{{ shuffler }}</span>
+  </h2>
+  <h3 v-cloak class="rounds">
+    {{ roundsCopy }}<strong ref="totalRounds">{{ roundCount }}</strong>
+  </h3>
   <button
     v-show="counter"
-    :disabled="isDisabled"
     class="button button--white button--reset"
+    :disabled="isDisabled"
     @click="reset"
   >
     {{ resetCopy }}
@@ -11,49 +16,43 @@
   <button v-show="!counter" class="button button--turquoise" @click="shuffle">
     {{ shuffleCopy }}
   </button>
-  <button :disabled="isDisabled" class="button button--pink" @click="deleteShuffle">
+  <button class="button button--pink" :disabled="members.length === 0" @click="deleteShuffle">
     {{ shuffleDelete }}
   </button>
   <button v-show="!counter" class="button" @click="editList">{{ shuffleEdit }}</button>
   <Suspense>
     <template #default>
       <transition-group v-cloak class="list" name="list" tag="ul">
-        <li
-          v-for="member in members"
-          v-cloak
-          v-show="member.isWorking"
-          :key="member.id"
-          class="list__item"
-        >
+        <li v-for="member in shuffledMembers" v-cloak :key="member.id" class="list__item">
           <div class="list__box">
             <figure class="list__figure">
               <img class="list__image" :src="member.photo" :alt="member.name" />
             </figure>
             <span class="list__text">{{ member.name }}</span>
-            <button
-              class="list__info"
-              :disabled="isDisabled"
-              @click="member.isWorking = !member.isWorking"
-            >
-              <span>Working</span>
+            <button class="list__info" :disabled="isDisabled" @click="toggleWorking(member)">
+              <span>{{ member.isWorking ? workingCopy : notWorkingCopy }}</span>
             </button>
           </div>
         </li>
       </transition-group>
     </template>
-    <template #fallback> Loading... </template>
+    <template #fallback>Loading...</template>
   </Suspense>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
-import { setDailyBackground } from '../helpers/background.vue';
-import { randomRounds } from '../helpers/randomNumber.vue';
+import { generateRandomRounds } from '../helpers/randomNumber.vue';
+import { getTimeToMidnight } from '../helpers/getTimeToMidnight.vue';
 import { confettiEffect } from '../helpers/confettiEffect.vue';
-import { users } from '../helpers/users.vue';
+import { useUsers } from '../helpers/useUsers.vue';
 
 export default {
   props: {
+    shufflerCopy: {
+      type: String,
+      required: true
+    },
     roundsCopy: {
       type: String,
       required: true
@@ -77,22 +76,24 @@ export default {
   },
 
   setup() {
-    const members = users(),
+    const members = useUsers(),
       totalRounds = ref(null),
+      timeToMidnight = getTimeToMidnight(),
       counter = ref(0);
 
-    let roundCount = randomRounds(),
+    let roundCount = generateRandomRounds(),
       isDisabled = ref(null),
-      shuffleSound,
-      finishSound,
+      shuffling,
+      flute,
       shufflerContainer,
+      whoShuffles,
       usersContainer;
 
     const reset = () => {
-      finishSound.pause();
-      finishSound.currentTime = 0;
+      flute.pause();
+      flute.currentTime = 0;
       counter.value = 0;
-      roundCount = totalRounds.value.textContent = randomRounds();
+      roundCount = totalRounds.value.textContent = generateRandomRounds();
       members.sort((a, b) => a.name.localeCompare(b.name));
       members.map(member => (member.isWorking = true));
     };
@@ -103,7 +104,7 @@ export default {
         counter.value++;
 
         if (counter.value <= roundCount) {
-          shuffleSound.play();
+          shuffling.play();
           totalRounds.value.textContent = roundCount - counter.value;
 
           for (let i = members.length - 1; i > 0; i--) {
@@ -113,9 +114,9 @@ export default {
 
           if (counter.value === roundCount) {
             clearInterval(shufflingMembers);
-            finishSound.play();
+            flute.play();
             setTimeout(() => {
-              if (!finishSound.paused) {
+              if (!flute.paused) {
                 isDisabled.value = false;
                 confettiEffect();
               }
@@ -136,8 +137,8 @@ export default {
         if (!members.length) {
           shufflerContainer.style.display = 'none';
           usersContainer.style.display = 'block';
-          finishSound.pause();
-          finishSound.currentTime = 0;
+          flute.pause();
+          flute.currentTime = 0;
           counter.value = 0;
         }
       }
@@ -148,15 +149,28 @@ export default {
       usersContainer.style.display = 'block';
     };
 
+    const whoShufflesRandomizer = () => {
+      if (timeToMidnight > 0) {
+        setTimeout(() => {
+          const today = new Date();
+          const days = today.getTime() / (1000 * 60 * 60 * 24);
+          const index = Math.floor(days) % members.length;
+          const shuffler = members[index];
+          whoShuffles.textContent = shuffler.name;
+        }, 500);
+      }
+    };
+
     const rounds = () => (totalRounds.value.textContent = roundCount);
 
     onMounted(() => {
-      shuffleSound = document.getElementById('shuffling-sound');
-      finishSound = document.getElementById('shuffling-finish');
+      shuffling = document.getElementById('shuffling');
+      flute = document.getElementById('flute');
       shufflerContainer = document.querySelector('.shuffler');
       usersContainer = document.querySelector('.users');
+      whoShuffles = document.querySelector('.who-shuffles');
       rounds();
-      setDailyBackground();
+      whoShufflesRandomizer();
     });
 
     return {
@@ -164,16 +178,21 @@ export default {
       totalRounds,
       roundCount,
       counter,
+      isDisabled,
+      whoShuffles,
       shuffle,
       reset,
-      isDisabled,
       deleteShuffle,
-      editList
+      editList,
+      whoShufflesRandomizer
     };
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/list', '../scss/buttons', '../scss/rounds';
+@import '../scss/list';
+@import '../scss/buttons';
+@import '../scss/choice';
+@import '../scss/rounds';
 </style>

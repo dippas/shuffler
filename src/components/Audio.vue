@@ -1,22 +1,14 @@
 <template>
-  <audio id="shuffling-sound">
-    <source :src="shuffling" type="audio/mpeg" />
-  </audio>
-  <audio id="shuffling-finish">
-    <source :src="flute" type="audio/mpeg" />
+  <audio v-for="(source, index) in audioSources" :id="source.id" :key="index">
+    <source :src="source.url" :type="'audio/mpeg'" />
   </audio>
 </template>
 
 <script>
 export default {
   props: {
-    shuffling: {
-      type: String,
-      required: true
-    },
-
-    flute: {
-      type: String,
+    audioSources: {
+      type: Array,
       required: true
     }
   }

@@ -1,22 +1,27 @@
 {
   "members": [
     {
+      "id": 1,
       "name": "Earl Kramer",
       "photo": "/assets/avatars/1.jpg"
     },
     {
+      "id": 2,
       "name": "Malcom Benamati",
       "photo": "/assets/avatars/2.jpg"
     },
     {
+      "id": 3,
       "name": "Claud Fogle",
       "photo": "/assets/avatars/3.jpg"
     },
     {
+      "id": 4,
       "name": "Nichelle Pato",
       "photo": "/assets/avatars/4.jpg"
     },
     {
+      "id": 5,
       "name": "Burl Calimer",
       "photo": "/assets/avatars/5.jpg"
     }
