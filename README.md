@@ -20,7 +20,7 @@ Give a ⭐️ if you enjoyed this project!
 
 [![release (latest by date)](https://img.shields.io/github/v/release/dippas/shuffler)](https://github.com/dippas/shuffler/releases/latest)
 [![issues](https://img.shields.io/github/issues/dippas/shuffler)](https://github.com/dippas/shuffler/issues)
-![maintenance](https://img.shields.io/maintenance/yes/2022)
+![maintenance](https://img.shields.io/maintenance/yes/2023)
 ![release date](https://img.shields.io/github/release-date/dippas/shuffler)
 
 ## Built With
