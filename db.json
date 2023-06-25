@@ -3,27 +3,32 @@
     {
       "id": 1,
       "name": "Earl Kramer",
-      "photo": "/assets/avatars/1.jpg"
+      "photo": "/assets/avatars/1.jpg",
+      "isWorking": true
     },
     {
       "id": 2,
       "name": "Malcom Benamati",
-      "photo": "/assets/avatars/2.jpg"
+      "photo": "/assets/avatars/2.jpg",
+      "isWorking": true
     },
     {
       "id": 3,
       "name": "Claud Fogle",
-      "photo": "/assets/avatars/3.jpg"
+      "photo": "/assets/avatars/3.jpg",
+      "isWorking": true
     },
     {
       "id": 4,
       "name": "Nichelle Pato",
-      "photo": "/assets/avatars/4.jpg"
+      "photo": "/assets/avatars/4.jpg",
+      "isWorking": false
     },
     {
       "id": 5,
       "name": "Burl Calimer",
-      "photo": "/assets/avatars/5.jpg"
+      "photo": "/assets/avatars/5.jpg",
+      "isWorking": true
     }
   ]
 }

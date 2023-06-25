@@ -8,6 +8,7 @@ const useUsers = () => {
     const response = await fetch('http://localhost:7000/members');
     const data = await response.json();
     const tempMembers = [];
+
     for (const id in data) {
       tempMembers.push({
         id: id,
@@ -15,11 +16,12 @@ const useUsers = () => {
         photo:
           data[id]?.photo ??
           `https://eu.ui-avatars.com/api/?background=random&name=${data[id].name}`,
-        isWorking: true
+        isWorking: data[id].isWorking
       });
     }
     tempMembers.sort((a, b) => a.name.localeCompare(b.name));
     members.splice(0, members.length, ...tempMembers);
+
     return members;
   };
 

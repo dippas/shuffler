@@ -13,7 +13,7 @@
     </button>
   </div>
   <div v-cloak class="shuffler">
-    <Shuffler
+    <Events
       :key="state.counter"
       shuffler-copy="Who shuffles? — "
       rounds-copy="Rounds: "
@@ -25,15 +25,14 @@
     <Quote />
   </div>
 </template>
-
 <script>
 import { reactive } from 'vue';
-import Shuffler from './Events.vue';
+import Events from './Events.vue';
 import Quote from './Quote.vue';
 
 export default {
   components: {
-    Shuffler,
+    Events,
     Quote
   },
 
@@ -43,9 +42,7 @@ export default {
       checked: false
     });
 
-    const startShuffler = () => {
-      state.counter++;
-    };
+    const startShuffler = () => state.counter++;
 
     return { state, startShuffler };
   }
